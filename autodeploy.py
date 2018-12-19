@@ -8,14 +8,14 @@ import datetime
 
 def git_pull():
     # returns true if there are changes
-    print str(datetime.datetime.now()), 'git_pull'
     repo = git.Git()
     old_hash = repo.log().split('\n')[0]
     g = git.cmd.Git()
     g.pull()
     new_hash = repo.log().split('\n')[0]
     has_pulled_something = new_hash != old_hash
-    print str(datetime.datetime.now()), 'has pulled something:', has_pulled_something
+    if has_pulled_something:
+        print str(datetime.datetime.now()), 'Upgrades...'
     return has_pulled_something
 
 def is_alive(pid):
